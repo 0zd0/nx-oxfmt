@@ -1,9 +1,9 @@
 {
-  "executors": {
-    "fmt": {
-      "implementation": "./src/executors/fmt/fmt",
-      "schema": "./src/executors/fmt/schema.json",
-      "description": "fmt executor"
+    "executors": {
+        "fmt": {
+            "implementation": "./src/executors/fmt/fmt",
+            "schema": "./src/executors/fmt/schema.json",
+            "description": "fmt executor"
+        }
     }
-  }
 }

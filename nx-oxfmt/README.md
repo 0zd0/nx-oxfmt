@@ -14,14 +14,14 @@ npx nx add @0zd0/nx-oxfmt
 
 ```json
 {
-  "targets": {
-    "fmt": {
-      "executor": "@nx-oxfmt/plugin:fmt",
-      "options": {
-        "write": true
-      }
+    "targets": {
+        "fmt": {
+            "executor": "@nx-oxfmt/plugin:fmt",
+            "options": {
+                "write": true
+            }
+        }
     }
-  }
 }
 ```
 

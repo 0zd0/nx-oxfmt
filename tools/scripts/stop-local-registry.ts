@@ -6,7 +6,7 @@
 /// <reference path="registry.d.ts" />
 
 export default () => {
-  if (global.stopLocalRegistry) {
-    global.stopLocalRegistry();
-  }
-};
+    if (global.stopLocalRegistry) {
+        global.stopLocalRegistry()
+    }
+}

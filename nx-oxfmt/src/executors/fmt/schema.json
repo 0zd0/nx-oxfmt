@@ -1,61 +1,61 @@
 {
-  "$schema": "https://json-schema.org/schema",
-  "version": 2,
-  "title": "Oxfmt executor",
-  "description": "Run oxfmt on a project",
-  "type": "object",
-  "properties": {
-    "check": {
-      "type": "boolean",
-      "description": "Check if files are formatted, also show statistics",
-      "default": false
-    },
-    "write": {
-      "type": "boolean",
-      "description": "Format and write files in place",
-      "default": true
-    },
-    "listDifferent": {
-      "type": "boolean",
-      "description": "List files that would be changed",
-      "default": false
-    },
-    "config": {
-      "type": "string",
-      "description": "Path to the configuration file"
-    },
-    "ignorePath": {
-      "oneOf": [
-        {
-          "type": "string"
+    "$schema": "https://json-schema.org/schema",
+    "version": 2,
+    "title": "Oxfmt executor",
+    "description": "Run oxfmt on a project",
+    "type": "object",
+    "properties": {
+        "check": {
+            "type": "boolean",
+            "description": "Check if files are formatted, also show statistics",
+            "default": false
         },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "write": {
+            "type": "boolean",
+            "description": "Format and write files in place",
+            "default": true
+        },
+        "listDifferent": {
+            "type": "boolean",
+            "description": "List files that would be changed",
+            "default": false
+        },
+        "config": {
+            "type": "string",
+            "description": "Path to the configuration file"
+        },
+        "ignorePath": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "description": "Path to ignore file(s). Can be specified multiple times. If not specified, .gitignore and .prettierignore in the current directory are used."
+        },
+        "withNodeModules": {
+            "type": "boolean",
+            "description": "Format code in node_modules directory (skipped by default)",
+            "default": false
+        },
+        "noErrorOnUnmatchedPattern": {
+            "type": "boolean",
+            "description": "Do not exit with error when pattern is unmatched",
+            "default": false
+        },
+        "threads": {
+            "type": "number",
+            "description": "Number of threads to use. Set to 1 for using only 1 CPU core."
+        },
+        "additionalArguments": {
+            "type": "string",
+            "description": "Additional arguments to pass to oxfmt"
         }
-      ],
-      "description": "Path to ignore file(s). Can be specified multiple times. If not specified, .gitignore and .prettierignore in the current directory are used."
     },
-    "withNodeModules": {
-      "type": "boolean",
-      "description": "Format code in node_modules directory (skipped by default)",
-      "default": false
-    },
-    "noErrorOnUnmatchedPattern": {
-      "type": "boolean",
-      "description": "Do not exit with error when pattern is unmatched",
-      "default": false
-    },
-    "threads": {
-      "type": "number",
-      "description": "Number of threads to use. Set to 1 for using only 1 CPU core."
-    },
-    "additionalArguments": {
-      "type": "string",
-      "description": "Additional arguments to pass to oxfmt"
-    }
-  },
-  "required": []
+    "required": []
 }
