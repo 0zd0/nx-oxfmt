@@ -1,28 +1,11 @@
 # nx-oxfmt
 
-An Nx plugin for [oxfmt](https://oxc.rs/docs/guide/usage/formatter/cli.html) - the high-performance JavaScript/TypeScript formatter.
+An Nx plugin for [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) - the high-performance JavaScript/TypeScript formatter.
 
-## Manual Setup
-
-### Install
+## Install
 
 ```bash
-npx nx add @0zd0/nx-oxfmt
-```
-
-### Add the executor to `project.json`:
-
-```json
-{
-    "targets": {
-        "fmt": {
-            "executor": "@nx-oxfmt/plugin:fmt",
-            "options": {
-                "write": true
-            }
-        }
-    }
-}
+nx add @0zd0/nx-oxfmt
 ```
 
 ## Run Formatting:
