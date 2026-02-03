@@ -112,7 +112,7 @@ describe('Fmt Executor', () => {
         expect(args).toContain('--ignore-path=.next')
     })
 
-    it('MAGIC: should pass unknown arguments via __unparsed__', async () => {
+    it('should pass unknown arguments via __unparsed__', async () => {
         await runAndEmit({
             write: true,
             __unparsed__: ['--max-width=120', '--no-semi'],
