@@ -53,7 +53,8 @@
             "workspaceChangelog": {
                 "file": false,
                 "createRelease": "github"
-            }
+            },
+            "automaticFromRef": true
         },
         "git": {
             "commit": true,
