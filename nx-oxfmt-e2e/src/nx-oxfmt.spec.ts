@@ -6,7 +6,6 @@ import {
     readJson,
     updateFile,
     readFile,
-    uniq,
 } from '@nx/plugin/testing'
 import { existsSync, mkdirSync, rmSync } from 'fs'
 import { dirname } from 'path'
