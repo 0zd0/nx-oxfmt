@@ -7,5 +7,5 @@ export interface FmtExecutorSchema {
     withNodeModules?: boolean
     noErrorOnUnmatchedPattern?: boolean
     threads?: number
-    __unparsed__?: string
+    __unparsed__?: string[]
 }

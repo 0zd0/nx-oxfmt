@@ -17,7 +17,7 @@ const runExecutor: PromiseExecutor<FmtExecutorSchema> = async (options, context)
         const paths = Array.isArray(options.ignorePath) ? options.ignorePath : [options.ignorePath]
         paths.forEach((path) => args.push(`--ignore-path=${path}`))
     }
-    if (options.__unparsed__) {
+    if (Array.isArray(options.__unparsed__)) {
         args.push(...options.__unparsed__)
     }
 
