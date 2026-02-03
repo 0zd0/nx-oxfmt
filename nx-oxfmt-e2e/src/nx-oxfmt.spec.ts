@@ -7,8 +7,8 @@ import {
     updateFile,
     readFile,
 } from '@nx/plugin/testing'
-import { existsSync, mkdirSync, rmSync } from 'fs'
-import { dirname } from 'path'
+import { existsSync, mkdirSync, readdirSync, rmSync, statSync } from 'fs'
+import { dirname, join } from 'path'
 
 const LIB_PROJECT = 'lib'
 const FMT_PROJECT = 'lib-fmt'
@@ -91,7 +91,31 @@ describe('nx-oxfmt', () => {
         const dirtyContent = 'const a=1;console.log(a)'
         updateFile(filePath, dirtyContent)
 
-        await runNxCommandAsync(`fmt ${FMT_PROJECT}`)
+        console.log('\n🔍🔍🔍 FS DEBUG START 🔍🔍🔍')
+        try {
+            // Ищем, где реально лежит бинарник во временной папке
+            const binPath = join(tmpProjPath(), 'node_modules', '.bin', 'oxfmt')
+            console.log(`Checking path: ${binPath}`)
+
+            const stats = statSync(binPath)
+            console.log('✅ File exists!')
+            console.log(`Size: ${stats.size}`)
+            // mode 33261 = 755 (rwxr-xr-x), mode 33188 = 644 (rw-r--r--)
+            console.log(`Mode: ${stats.mode}`)
+        } catch (err: any) {
+            console.log('❌ BINARY MISSING OR INACCESSIBLE:', err.message)
+
+            // Если файла нет, покажем, что вообще есть в папке .bin
+            try {
+                const dirPath = join(tmpProjPath(), 'node_modules', '.bin')
+                console.log('Contents of .bin:', readdirSync(dirPath))
+            } catch (e) {
+                console.log('Cannot read .bin directory')
+            }
+        }
+        console.log('🔍🔍🔍 FS DEBUG END 🔍🔍🔍\n')
+
+        await runNxCommandAsync(`fmt ${FMT_PROJECT} --verbose`)
 
         const formattedContent = readFile(filePath)
 

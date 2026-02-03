@@ -1,7 +1,14 @@
-import { PromiseExecutor, logger, getPackageManagerCommand } from '@nx/devkit'
+import { PromiseExecutor, logger } from '@nx/devkit'
 import { spawn } from 'child_process'
 import { FmtExecutorSchema } from './schema'
-import { OXFMT_BIN_NAME } from '../../constants'
+
+export const getOxfmtPath = (workspaceRoot: string): string => {
+    try {
+        return require.resolve('oxfmt/bin/oxfmt', { paths: [workspaceRoot] })
+    } catch {
+        throw new Error('oxfmt not found')
+    }
+}
 
 const runExecutor: PromiseExecutor<FmtExecutorSchema> = async (options, context) => {
     const projectRoot = context.projectsConfigurations.projects[context.projectName]?.root
@@ -24,13 +31,14 @@ const runExecutor: PromiseExecutor<FmtExecutorSchema> = async (options, context)
 
     args.push(projectRoot)
 
+    const oxfmtBin = getOxfmtPath(context.root)
+
     logger.info(`Running oxfmt for ${context.projectName}`)
 
     return new Promise((resolve) => {
-        const child = spawn(`${getPackageManagerCommand().exec} ${OXFMT_BIN_NAME}`, args, {
+        const child = spawn(oxfmtBin, args, {
             cwd: context.root,
             stdio: 'inherit',
-            shell: true,
         })
 
         child.on('close', (code) => {

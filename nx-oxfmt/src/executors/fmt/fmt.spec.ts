@@ -1,9 +1,12 @@
 import { ExecutorContext, logger } from '@nx/devkit'
 
 import { FmtExecutorSchema } from './schema'
-import executor from './fmt'
+import * as fmtModule from './fmt'
 import { spawn, ChildProcess } from 'child_process'
-import { EXEC, OXFMT_BIN_NAME } from '../../constants'
+import { OXFMT_BIN_NAME } from '../../constants'
+
+const { default: executor } = fmtModule
+const oxfmtMockBin = `/root/node_modules/.bin/${OXFMT_BIN_NAME}`
 
 jest.mock('child_process')
 const mockedSpawn = jest.mocked(spawn)
@@ -13,8 +16,8 @@ jest.mock('@nx/devkit', () => ({
         info: jest.fn(),
         error: jest.fn(),
     },
-    getPackageManagerCommand: jest.fn().mockReturnValue({ exec: 'pnpm exec' }),
 }))
+jest.spyOn(fmtModule, 'getOxfmtPath').mockReturnValue(oxfmtMockBin)
 
 const context: ExecutorContext = {
     root: '/root',
@@ -77,9 +80,9 @@ describe('Fmt Executor', () => {
 
         expect(result.success).toBe(true)
         expect(spawn).toHaveBeenCalledWith(
-            `${EXEC} ${OXFMT_BIN_NAME}`,
+            oxfmtMockBin,
             ['--write', 'apps/my-project'],
-            expect.objectContaining({ cwd: '/root', shell: true }),
+            expect.objectContaining({ cwd: '/root' }),
         )
     })
 
