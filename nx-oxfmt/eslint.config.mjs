@@ -20,6 +20,12 @@ export default [
         files: ['**/package.json', '**/generators.json'],
         rules: {
             '@nx/nx-plugin-checks': 'error',
+            '@nx/dependency-checks': [
+                'error',
+                {
+                    ignoredDependencies: ['oxfmt'],
+                },
+            ],
         },
         languageOptions: {
             parser: await import('jsonc-eslint-parser'),

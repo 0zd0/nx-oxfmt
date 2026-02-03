@@ -15,23 +15,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'npm'
+          node-version: 24
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
 
       - name: Build
-        run: npx nx build nx-oxfmt
+        run: pnpm run build
 
       - name: Lint
-        run: npx nx lint nx-oxfmt
+        run: pnpm run lint
 
       - name: Test
-        run: npx nx test nx-oxfmt
+        run: pnpm run test
 
       - name: Test E2E
-        run: npx nx e2e nx-oxfmt-e2e
+        run: pnpm run e2e

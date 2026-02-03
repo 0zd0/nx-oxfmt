@@ -2,19 +2,17 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing'
 import { Tree, readNxJson, updateNxJson } from '@nx/devkit'
 
 import initGenerator from './init'
-import { InitGeneratorSchema } from './schema'
 import { DEFAULT_FORMAT_TARGET_NAME, NX_PLUGIN_NAME } from '../../constants'
 
 describe('init generator', () => {
     let tree: Tree
-    const options: InitGeneratorSchema = {} as InitGeneratorSchema
 
     beforeEach(() => {
         tree = createTreeWithEmptyWorkspace()
     })
 
     it('should add the plugin to nx.json if not present', async () => {
-        await initGenerator(tree, options)
+        await initGenerator(tree)
 
         const nxJson = readNxJson(tree)
 
@@ -39,7 +37,7 @@ describe('init generator', () => {
         ]
         updateNxJson(tree, nxJson)
 
-        await initGenerator(tree, options)
+        await initGenerator(tree)
 
         const updatedNxJson = readNxJson(tree)
 
@@ -57,7 +55,7 @@ describe('init generator', () => {
         nxJson.plugins = [...(nxJson.plugins || []), NX_PLUGIN_NAME]
         updateNxJson(tree, nxJson)
 
-        await initGenerator(tree, options)
+        await initGenerator(tree)
 
         const updatedNxJson = readNxJson(tree)
         const myPlugins = updatedNxJson?.plugins?.filter((plugin) => {

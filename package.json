@@ -4,6 +4,7 @@
     "license": "MIT",
     "scripts": {
         "build": "nx build nx-oxfmt",
+        "lint": "nx lint nx-oxfmt",
         "publish-local": "npx tsx tools/scripts/publish-local.ts",
         "test": "npx nx test nx-oxfmt",
         "e2e": "NX_DAEMON=false npx nx e2e nx-oxfmt-e2e",
@@ -20,6 +21,7 @@
         "@nx/eslint-plugin": "22.4.4",
         "@nx/jest": "22.4.4",
         "@nx/js": "22.4.4",
+        "@nx/plugin": "22.4.4",
         "@nx/workspace": "22.4.4",
         "@swc-node/register": "~1.9.1",
         "@swc/cli": "~0.6.0",
@@ -41,8 +43,7 @@
         "tslib": "^2.3.0",
         "typescript": "~5.9.2",
         "typescript-eslint": "^8.40.0",
-        "verdaccio": "^6.0.5",
-        "@nx/plugin": "22.4.4"
+        "verdaccio": "^6.0.5"
     },
     "nx": {
         "includedScripts": []

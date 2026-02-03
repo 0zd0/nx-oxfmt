@@ -21,7 +21,7 @@ export const createNodesV2: CreateNodesV2<OxfmtPluginOptions> = [
     NX_PROJECT_CONFIG_GLOB,
     async (configFiles, options, context) => {
         return await createNodesFromFiles(
-            (configFile, options, context) => {
+            (configFile, options) => {
                 const projectRoot = dirname(configFile)
 
                 const target: TargetConfiguration = {

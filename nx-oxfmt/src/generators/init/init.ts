@@ -1,8 +1,7 @@
 import { readNxJson, Tree, updateNxJson } from '@nx/devkit'
-import { InitGeneratorSchema } from './schema'
 import { DEFAULT_FORMAT_TARGET_NAME, NX_PLUGIN_NAME } from '../../constants'
 
-export default async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+export default async function initGenerator(tree: Tree) {
     const nxJson = readNxJson(tree) || {}
     const hasPlugin = nxJson.plugins?.some((plugin) => {
         return typeof plugin === 'string' ?
