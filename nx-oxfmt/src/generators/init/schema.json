@@ -4,5 +4,5 @@
     "title": "Initialize nx-oxfmt in workspace",
     "type": "object",
     "properties": {},
-    "required": ["name"]
+    "required": []
 }

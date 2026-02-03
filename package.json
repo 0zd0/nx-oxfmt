@@ -6,8 +6,8 @@
         "build": "nx build nx-oxfmt",
         "publish-local": "npx tsx tools/scripts/publish-local.ts",
         "test": "npx nx test nx-oxfmt",
-        "e2e": "npx nx e2e nx-oxfmt-e2e",
-        "e2e:lite": "E2E_SKIP_SETUP=true npx nx e2e nx-oxfmt-e2e",
+        "e2e": "NX_DAEMON=false npx nx e2e nx-oxfmt-e2e",
+        "e2e:lite": "NX_DAEMON=false E2E_SKIP_SETUP=true npx nx e2e nx-oxfmt-e2e",
         "fmt:all": "nx format --all"
     },
     "private": true,

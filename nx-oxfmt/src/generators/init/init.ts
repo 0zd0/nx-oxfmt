@@ -16,7 +16,7 @@ export default async function initGenerator(tree: Tree, options: InitGeneratorSc
             {
                 plugin: NX_PLUGIN_NAME,
                 options: {
-                    lintTargetName: DEFAULT_FORMAT_TARGET_NAME,
+                    formatTargetName: DEFAULT_FORMAT_TARGET_NAME,
                 },
             },
         ]

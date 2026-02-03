@@ -21,7 +21,7 @@ describe('init generator', () => {
         expect(nxJson?.plugins).toContainEqual({
             plugin: NX_PLUGIN_NAME,
             options: {
-                lintTargetName: DEFAULT_FORMAT_TARGET_NAME,
+                formatTargetName: DEFAULT_FORMAT_TARGET_NAME,
             },
         })
     })
@@ -33,7 +33,7 @@ describe('init generator', () => {
             {
                 plugin: NX_PLUGIN_NAME,
                 options: {
-                    lintTargetName: 'custom-lint-name',
+                    formatTargetName: 'custom-lint-name',
                 },
             },
         ]

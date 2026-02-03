@@ -1,4 +1,4 @@
-import { PromiseExecutor, logger } from '@nx/devkit'
+import { PromiseExecutor, logger, getPackageManagerCommand } from '@nx/devkit'
 import { spawn } from 'child_process'
 import { FmtExecutorSchema } from './schema'
 
@@ -26,7 +26,7 @@ const runExecutor: PromiseExecutor<FmtExecutorSchema> = async (options, context)
     logger.info(`Running oxfmt for ${context.projectName}`)
 
     return new Promise((resolve) => {
-        const child = spawn('oxfmt', args, {
+        const child = spawn(`${getPackageManagerCommand().exec} oxfmt`, args, {
             cwd: context.root,
             stdio: 'inherit',
             shell: true,
