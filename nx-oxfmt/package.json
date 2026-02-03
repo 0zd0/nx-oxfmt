@@ -19,5 +19,6 @@
         "directory": "nx-oxfmt"
     },
     "author": "0zd0",
-    "license": "MIT"
+    "license": "MIT",
+    "generators": "./generators.json"
 }
