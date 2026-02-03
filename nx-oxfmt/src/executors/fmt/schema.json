@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/schema",
     "version": 2,
-    "title": "Oxfmt executor",
+    "title": "Oxfmt executot",
     "description": "Run oxfmt on a project",
     "type": "object",
     "properties": {
@@ -12,8 +12,8 @@
         },
         "write": {
             "type": "boolean",
-            "description": "Format and write files in place",
-            "default": true
+            "description": "Format and write files in place (default)",
+            "default": false
         },
         "listDifferent": {
             "type": "boolean",
@@ -22,9 +22,11 @@
         },
         "config": {
             "type": "string",
-            "description": "Path to the configuration file"
+            "description": "Path to the configuration file",
+            "alias": "c"
         },
         "ignorePath": {
+            "description": "Path to ignore file(s). Can be specified multiple times. If not specified, .gitignore and .prettierignore in the current directory are used.",
             "oneOf": [
                 {
                     "type": "string"
@@ -35,8 +37,7 @@
                         "type": "string"
                     }
                 }
-            ],
-            "description": "Path to ignore file(s). Can be specified multiple times. If not specified, .gitignore and .prettierignore in the current directory are used."
+            ]
         },
         "withNodeModules": {
             "type": "boolean",
@@ -55,7 +56,8 @@
         "additionalArguments": {
             "type": "string",
             "description": "Additional arguments to pass to oxfmt"
-        }
+        },
+        "additionalProperties": true
     },
     "required": []
 }
