@@ -1,1 +1,1 @@
-./nx-oxfmt/README.md
+./packages/nx-oxfmt/README.md

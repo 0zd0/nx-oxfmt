@@ -15,7 +15,7 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "nx-oxfmt": ["nx-oxfmt/src/index.ts"]
+            "nx-oxfmt": ["packages/nx-oxfmt/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
